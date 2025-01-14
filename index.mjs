@@ -1,5 +1,5 @@
 import http from 'http';
-import app from './app.mjs';  // Import the app defined in app.mjs
+import app from './src/app.mjs';  // Import the app defined in app.mjs
 import config from './src/config/config.mjs'
 import Logger from './src/config/logger.mjs';
 

@@ -3,17 +3,15 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
-import Logger from "./src/config/logger.mjs";
-import router from "./src/routes/index.mjs";
-import limiter from "./src/utils/limiter.mjs";
+import Logger from "./config/logger.mjs";
+import router from "./routes/index.mjs";
 import requestLogger from './src/middlewares/requestLogger.middleware.mjs';
-import crossOriginControl from './src/middlewares/crossOriginControl.middleware.mjs';
+import crossOriginControl from './middlewares/crossOriginControl.middleware.mjs';
 
 const app = express();
 
 // Middleware setup
 app.use(crossOriginControl); // Enable Cross-Origin Resource Sharing
-app.use(limiter); // Request limiter
 app.use(requestLogger); // Log HTTP requests
 app.use(helmet()); // Security Middleware
 app.use(morgan('combined')); // Log HTTP requests
