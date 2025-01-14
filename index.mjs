@@ -2,6 +2,7 @@ import http from 'http';
 import app from './src/app.mjs';  // Import the app defined in app.mjs
 import config from './src/config/config.mjs'
 import Logger from './src/config/logger.mjs';
+import connectToMongoDB from './src/config/db/connection.mjs';
 
 const PORT = config.app.port || 3000;
 const server = http.createServer(app);
@@ -9,6 +10,7 @@ const server = http.createServer(app);
 // Start the server
 server.listen(PORT, async() => {
     try {
+        await connectToMongoDB();
         Logger.info(`API Gateway running on http://localhost:${PORT}`);
     } catch (error) {
         Logger.error("Error starting server: ", error);

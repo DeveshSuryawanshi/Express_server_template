@@ -7,6 +7,7 @@ import Logger from "./config/logger.mjs";
 import router from "./routes/index.mjs";
 import requestLogger from './src/middlewares/requestLogger.middleware.mjs';
 import crossOriginControl from './middlewares/crossOriginControl.middleware.mjs';
+import errorMiddleware from "./middlewares/error.middleware.mjs";
 
 const app = express();
 
@@ -31,5 +32,7 @@ app.use((err, req, res, next) => {
     Logger.error(`Error: ${err.message}`);
     res.status(500).json({ error: 'Internal Server Error' });
 });
+
+app.use(errorMiddleware);
 
 export default app;
